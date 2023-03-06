@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: firefox
+  name: firefox
+  namespace: default
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    name: viewer         
+  selector:
+    app: firefox
+  type: NodePort

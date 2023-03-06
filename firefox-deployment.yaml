@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefox
+  namespace: default
+  labels:
+    app: firefox
+spec:
+  selector:
+    matchLabels:
+      app: firefox
+  template:
+    metadata:
+      labels:
+        app: firefox
+    spec:
+      containers:             
+      - name: firefox
+        resources:
+          limits:
+            cpu: "1"
+            ephemeral-storage: 1Gi
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            ephemeral-storage: 1Gi
+            memory: 1Gi       
+        image: linuxserver/firefox:101.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+          name: web
+        env:
+        - name: TZ
+          value: "Asia/Taipei"
